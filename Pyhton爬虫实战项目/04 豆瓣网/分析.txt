@@ -1,0 +1,18 @@
+move_directors,move_score,move_name,move_actor,move_cover,move_DatailsLink,move_year,move_types,move_country,move_language,move_ReleaseTime,move_location,ShortFilm_num,move_Star_Rating,move_information,move_ShortFilm(ShortFilm_user,ShortFilm_cover,ShortFilm_time,ShortFilm_content),Img_List,Trailer_Link
+电影导演，电影评分，电影名字，电影演员，电影封面，电影详情链接，电影年份，电影类型，电影国家，电影语言，电影上映时间，电影片场，短片个数，电影星级，电影信息介绍，电影短评（短评用户，短评评分，评论时间，评论内容），图片列表，预告片链接
+
+分析第一个电影列表页面:
+https://m.douban.com/rexxar/api/v2/movie/recommend?refresh=0&start=0&count=20&selected_categories=%7B%7D&sort=T&tags=   0~20个电影
+https://m.douban.com/rexxar/api/v2/movie/recommend?refresh=0&start=20&count=20&selected_categories=%7B%7D&sort=T&tags=   20~40个电影
+https://m.douban.com/rexxar/api/v2/movie/recommend?refresh=0&start=40&count=20&selected_categories=%7B%7D&sort=T&tags=   40~60个电影
+start=0 参数动态
+拿到 id: "2131459", 组合成 https://movie.douban.com/subject/2131459/（电影详情链接）
+
+分析第二个电影详情页面:
+拿到 class="related-pic-video"---》href="https://movie.douban.com/trailer/233315/#content"（预告片页面地址）
+
+分析第三个预告片页面:
+拿到 "embedUrl": "https://vt1.doubanio.com/202210131039/250889bbf8b4430af3146ad55a70e785/view/movie/M/402330315.mp4"（预告片链接）
+
+['克里斯托弗·诺兰', '9.4', '星际穿越', '马修·麦康纳,安妮·海瑟薇,杰西卡·查斯坦,麦肯吉·弗依,卡西·阿弗莱克,迈克尔·凯恩,马特·达蒙,蒂莫西·柴勒梅德,艾伦·伯斯汀,约翰·利思戈,韦斯·本特利,大卫·吉亚西,比尔·欧文,托弗·戈瑞斯,科莱特·沃夫,弗朗西斯·X.麦卡蒂,安德鲁·博尔巴,乔什·斯图沃特,莱雅·卡里恩斯,利亚姆·迪金森,杰夫·赫普内尔,伊莱耶斯·加贝尔,布鲁克·史密斯,大卫·奥伊罗,威廉姆·德瓦内,拉什·费加,格里芬·弗雷泽,弗洛拉·诺兰', 'https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2614988097.jpg', 'https://movie.douban.com/subject/26752088/', '2014', '剧情,科幻,冒险', '美国 / 英国 / 加拿大', '英语', '2014-11-12', '169', '412898', '74.2%,21.4%,3.9%,0.4%,0.2%', '近未来的地球黄沙遍野，小麦、秋葵等基础农作物相继因枯萎病灭绝，人类不再像从前那样仰望星空，放纵想象力和灵感的迸发，而是每日在沙尘暴的肆虐下倒数着所剩不多的光景。在家务农的前NASA宇航员库珀（马修·麦康纳 Matthew McConaughey 饰）接连在女儿墨菲（麦肯吉·弗依 Mackenzie Foy 饰）的书房发现奇怪的重力场现象，随即得知在某个未知区域内前NASA成员仍秘密进行一个拯救人类的计划。多年以前土星附近出现神秘虫洞，NASA借机将数名宇航员派遣到遥远的星系寻找适合居住的星球。在布兰德教授（迈克尔·凯恩 Michael Caine 饰）的劝说下，库珀忍痛告别了女儿，和其他三名专家教授女儿艾米莉亚·布兰德（安妮·海瑟薇 Anne Hathaway 饰）、罗米利（大卫·吉雅西 David Gyasi 饰）、多伊尔（韦斯·本特利 Wes B...', [{'ShortFilm_user': '一只野生叮当猫', 'ShortFilm_cover': '50', 'ShortFilm_time': '2014-11-11 00:03:39', 'ShortFilm_content': '诺兰说：如果我活得够长 那么豆瓣TOP250就被我承包了。'}, {'ShortFilm_user': '比岁月含蓄', 'ShortFilm_cover': '50', 'ShortFilm_time': '2014-11-06 23:27:12', 'ShortFilm_content': '时间可以伸缩和折叠，唯独不能倒退。你的鹤发或许是我的童颜，而我一次呼吸能抵过你此生的岁月。'}, {'ShortFilm_user': '影志', 'ShortFilm_cover': '50', 'ShortFilm_time': '2014-11-12 10:28:53', 'ShortFilm_content': "太壮阔了，无以言表！40'渐入佳境，80'叹为观止，120'泪流满面，160'恍如隔世…不曾如此贴近浩瀚星空，被它环抱；不曾如此触摸生命之弦，遁入五维幻境。瑕不掩瑜的科幻神作，刷新视觉的IMAX体验，观影前撒好尿，准备接受近三小时的泪腺洗礼。“爱是一种力量，让我们超越时空感知它的存在”-发自豆瓣App"}, {'ShortFilm_user': 'CSUMMERY', 'ShortFilm_cover': '50', 'ShortFilm_time': '2014-11-06 22:17:10', 'ShortFilm_content': '我想给100颗星，这可能是我至今看过最令我震撼的电影了。到电影结束时候还不断流泪，奇迹不是因为有上帝 也不是有什么不可知的 某种力量，正是我们自己，人类不相信人类的力量把那些我们无可预知的奇迹都认为是上帝的功劳。若兰把我的世界观如此震撼人心的展现出来，我感觉我现在都激动得语无伦次了'}, {'ShortFilm_user': '我怀念的', 'ShortFilm_cover': '50', 'ShortFilm_time': '2014-11-06 21:46:54', 'ShortFilm_content': '整场基本屏住呼吸,瞠目结舌,无话可说.在香港这么多年除了电影节我第一次碰见放映结束观众集体鼓掌的.去年看完Gravity我觉得太空科幻片已经拍到头了,然后Nolan大神把我这点眼界碾压得粉碎.三体迷不必再较真拍三体这事Nolan已经把后半部给拍了.'}], 'https://img2.doubanio.com/view/photo/sqxs/public/p2208063011.jpg,https://img9.doubanio.com/view/photo/sqxs/public/p2211063036.jpg', 'https://vt1.doubanio.com/202210241127/76a6bf11bb95737755aa6ebcdf368740/view/movie/M/402630852.mp4']
+

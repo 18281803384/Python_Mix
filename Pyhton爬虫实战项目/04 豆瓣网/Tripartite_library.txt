@@ -1,0 +1,14 @@
+certifi
+charset-normalizer
+greenlet
+idna
+lxml
+numpy
+pandas
+PyMySQL
+python-dateutil
+pytz
+requests
+six
+SQLAlchemy
+urllib3
