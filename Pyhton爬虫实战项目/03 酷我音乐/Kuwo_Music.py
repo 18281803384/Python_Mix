@@ -5,7 +5,6 @@ import os
 import urllib.parse
 import requests
 from prettytable import PrettyTable
-import Fast_Proxies
 
 
 def main(ip_list):
@@ -22,7 +21,7 @@ def main(ip_list):
                 "http": 'http://{}'.format(ip_list[proxies_num])
             }
             # 显示使用的代理
-            print('代理地址: {}  , 代理次数{}'.format(proxies["http"], proxies_num))
+            print('代理地址: {}  , 代理次数{}'.format(proxies["http"], proxies_num + 1))
             # 目标地址
             website = 'http://www.kuwo.cn'
             try:
@@ -33,10 +32,12 @@ def main(ip_list):
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36",
                     "Cookie": "_ga=GA1.2.2044940001.1660029306; Hm_lvt_cdb524f42f0ce19b169a8071123a4797=1660029306,1660180501; Hm_lpvt_cdb524f42f0ce19b169a8071123a4797=1660180501; _gid=GA1.2.969805937.1660180501; _gat=1; kw_token=I9OHC3BJSC",
                     "Referer": "http://www.kuwo.cn/search/list?key={}".format(music_name_quote),
-                    "csrf": "I9OHC3BJSC"
+                    "csrf": "I9OHC3BJSC",
+                    'Connection': 'close'
                 }
                 # 拼接完整的请求地址
-                search_music_url = '{}/api/www/search/searchMusicBykeyWord?key={}&pn=1&rn=10&httpsStatus=1'.format(website, music_name_quote)
+                search_music_url = '{}/api/www/search/searchMusicBykeyWord?key={}&pn=1&rn=10&httpsStatus=1'.format(
+                    website, music_name_quote)
                 # 发起get请求
                 response = requests.get(search_music_url, headers=header, proxies=proxies)
                 # 设置网页响应的编码格式
@@ -59,7 +60,8 @@ def main(ip_list):
                 # 循环取歌曲列表中每一首歌曲的详情
                 for music_detail in music_list:
                     # 循环添加表格行数据
-                    tb.add_row([music_num, music_detail["name"], music_detail["artist"], music_detail["album"], music_detail["songTimeMinutes"]])
+                    tb.add_row([music_num, music_detail["name"], music_detail["artist"], music_detail["album"],
+                                music_detail["songTimeMinutes"]])
                     # 歌曲列表序号+1
                     music_num += 1
                 print(tb)
@@ -75,7 +77,8 @@ def main(ip_list):
                         print('^_^ 输入有误, 请重新输入 ！')
                         continue
                     # 拼接完整的歌曲请求地址
-                    music_playUrl = '{}/api/v1/www/music/playUrl?mid={}&type=music&httpsStatus=1'.format(website, music_rid)
+                    music_playUrl = '{}/api/v1/www/music/playUrl?mid={}&type=music&httpsStatus=1'.format(website,
+                                                                                                         music_rid)
                     # 发起get请求
                     response = requests.get(music_playUrl, headers=header, proxies=proxies)
                     # 设置网页响应的编码格式
@@ -117,5 +120,4 @@ def download_music(response, singer, music_name):
 
 
 if __name__ == '__main__':
-    main(Fast_Proxies.get_proxies_ip())
-
+    main(['39.98.197.238:80', '115.29.151.41:8029'])

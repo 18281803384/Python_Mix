@@ -7,7 +7,6 @@ import urllib.parse
 import requests
 from lxml import etree
 from prettytable import PrettyTable
-import Fast_Proxies
 
 
 # 下载小说
@@ -159,7 +158,8 @@ def search_hour(website, header, proxies):
             # 循环添加表格行数据
             for k, v in hour_dict.items():
                 tb.add_row(
-                    [k, v["article_name"], v["latest_chapter"], v["article_author"], v["word_number"], v["article_update"],
+                    [k, v["article_name"], v["latest_chapter"], v["article_author"], v["word_number"],
+                     v["article_update"],
                      v["article_state"]])
 
             # 显示表格文章列表
@@ -193,7 +193,7 @@ def search_hour(website, header, proxies):
                                 break
                     # 判断如果选择是文章下载功能
                     try:
-                        if int(select_function) in range(1,31):
+                        if int(select_function) in range(1, 31):
                             # 获取保存在字典里面的文章地址
                             hour_website = hour_dict[select_function]["article_website"]
                             # 调用函数下载文章
@@ -226,11 +226,12 @@ if __name__ == '__main__':
     website = 'https://www.qbiqu.com/'
     # 请求头协议
     header = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36",
+        'Connection': 'close'
     }
 
     # 获取代理地址列表
-    ip_list = Fast_Proxies.get_proxies_ip()
+    ip_list = ['39.98.197.238:80']
     # 代理次数
     proxies_num = 0
     while True:
@@ -239,15 +240,13 @@ if __name__ == '__main__':
             "http": 'http://{}'.format(ip_list[proxies_num])
         }
         # 显示使用的代理
-        print('代理地址: {}  , 代理次数{}'.format(proxies["http"], proxies_num + 1))
+        print('代理地址: {}  , 第{}次代理'.format(proxies["http"], proxies_num + 1))
         try:
             search_hour(website, header, proxies)
         except Exception:
-            if proxies_num == 14:
-                print("代理已用完！ 全部ip地段不可用  请稍后再试")
-                break
             proxies_num += 1
+            if proxies_num == len(ip_list):
+                print("\n代理已用完！ 所属ip地段不可用  请稍后再试...")
+                break
         else:
             break
-
-

@@ -24,7 +24,8 @@ class spider(object):
             'Cookie': 'll="118318"; bid=SMXcM0F8ur0; __utmv=30149280.20614; douban-fav-remind=1; ct=y; __utmc=30149280; dbcl2="206144561:uSxzw/4ZSJE"; ck=nhYI; __utmz=30149280.1666590134.14.2.utmcsr=accounts.douban.com|utmccn=(referral)|utmcmd=referral|utmcct=/; push_noty_num=0; push_doumail_num=0; frodotk="13bb0187facd119c3b310497f06734d4"; __utma=30149280.2018025655.1661740815.1666590134.1666592869.15; __utmt=1; __utmb=30149280.2.10.1666592869'
         }
         # 连接数据库
-        self.conn = connect(host='192.168.174.100', port=3306, user='root', password='Mm18095577363!',database='Dou_Ban_Data', charset='utf8mb4')
+        self.conn = connect(host='192.168.174.100', port=3306, user='root', password='Mm18095577363!',
+                            database='Dou_Ban_Data', charset='utf8mb4')
         # 获取游标
         self.cursor = self.conn.cursor()
 
@@ -152,7 +153,8 @@ class spider(object):
             move_language = info_text_list[1].replace(" / ", ",")
             movie_resultData.append(move_language)
             # 电影上映时间（move_ReleaseTime）
-            move_ReleaseTime = respDatailHTMLXpath.xpath('//*[@id="info"]/span[@property="v:initialReleaseDate"][1]/text()')
+            move_ReleaseTime = respDatailHTMLXpath.xpath(
+                '//*[@id="info"]/span[@property="v:initialReleaseDate"][1]/text()')
             if self.is_chinese(move_ReleaseTime[0][0:10]):
                 # 含有中文就截取[0:7]
                 movie_resultData.append(move_ReleaseTime[0][0:7])
@@ -179,14 +181,18 @@ class spider(object):
             move_ShortFilm = []
             comment_item = respDatailHTMLXpath.xpath('//*[@id="hot-comments"]/div')
             for item in comment_item:
-                ShortFilm_user = item.xpath('.//h3/span[@class="comment-info"]/a/text()')[0].replace('"', "“").replace("'", "’")
+                ShortFilm_user = item.xpath('.//h3/span[@class="comment-info"]/a/text()')[0].replace('"', "“").replace(
+                    "'", "’")
                 try:
-                    ShortFilm_cover = re.search('\d+', item.xpath('.//h3/span[@class="comment-info"]/span[2]/@class')[0]).group()
+                    ShortFilm_cover = re.search('\d+', item.xpath('.//h3/span[@class="comment-info"]/span[2]/@class')[
+                        0]).group()
                 except:
                     ShortFilm_cover = '0'
                 else:
-                    ShortFilm_time = item.xpath('.//h3/span[@class="comment-info"]/span[@class="comment-time "]/@title')[0]
-                    ShortFilm_content = item.xpath('.//p/span[@class="short"]/text()')[0].replace("\n", "").replace("\r", "").replace('"', "“").replace("'", "’")
+                    ShortFilm_time = \
+                    item.xpath('.//h3/span[@class="comment-info"]/span[@class="comment-time "]/@title')[0]
+                    ShortFilm_content = item.xpath('.//p/span[@class="short"]/text()')[0].replace("\n", "").replace(
+                        "\r", "").replace('"', "“").replace("'", "’")
                     move_ShortFilm.append({
                         "ShortFilm_user": ShortFilm_user,
                         "ShortFilm_cover": ShortFilm_cover,
@@ -201,7 +207,8 @@ class spider(object):
             movie_resultData.append(Img_List)
             # 预告片链接（Trailer_Link）
             try:
-                Trailer_src = respDatailHTMLXpath.xpath('//*[@class="label-trailer"]/a[@class="related-pic-video"]/@href')[0]
+                Trailer_src = \
+                respDatailHTMLXpath.xpath('//*[@class="label-trailer"]/a[@class="related-pic-video"]/@href')[0]
             except:
                 Trailer_Link = ''
             else:
